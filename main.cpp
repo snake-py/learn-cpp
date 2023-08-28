@@ -1,6 +1,7 @@
 #include <iostream>
 #include <typeinfo>
 #include <iomanip>
+// #include "Server.cpp"
 
 using namespace std;
 
@@ -30,6 +31,13 @@ void printNameAndAge(string name, int age, string alignment, int width = 10)
 
 int main()
 {
+    /*
+    // create a server and store in a server variable
+    Server::Server server;
+    // start the server
+    server.start();
+    */
+
     /*
     cout << "Hello, World!\n";
     cout << "Hello, World!\n";
