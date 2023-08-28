@@ -432,6 +432,189 @@ int main()
         cout << "helloWorld: " << helloWorld << endl;
 
     */
+    /*
+     //// pointers
+     int *p_number{}; // will initialize the pointer with nullptr
+     double *p_double{nullptr};
+
+     cout << "p_number: " << p_number << endl; // will print out 0
+     cout << "p_double: " << p_double << endl; // will print out 0
+
+     int number{10};
+     p_number = &number; // p_number will now point to the address of number
+     cout << "p_number: " << p_number << endl;
+     cout << "&number: " << &number << endl;
+     cout << "*p_number: " << *p_number << endl; // will print out 10
+     cout << "number: " << number << endl;       // will print out 10
+
+     *p_number = 20; // will change the value of number to 20
+     cout << "p_number: " << p_number << endl;
+     cout << "&number: " << &number << endl;
+     cout << "*p_number: " << *p_number << endl; // will print out 20
+     cout << "number: " << number << endl;       // will print out 20
+
+    // pointers and char arrays
+    // if you use a pointer with a char array then it is not editable!
+    char *p_message{"Hello World!"}; // will throw a warning because it is a string literal ISO c++ forbids converting a string constant to char*
+    cout << "p_message: " << p_message << endl;
+    cout << "*p_message: " << *p_message << endl; // prints only the first character
+
+    const char *p_message1{"Hello World!"}; // will not throw a warning because it is a const char*
+    cout << "p_message1: " << p_message1 << endl;
+    cout << "*p_message1: " << *p_message1 << endl; // prints only the first character
+
+    // what if we want to modify the string?
+    char message[]{"Hello World!"};
+    cout << "message: " << message << endl;
+    cout << "*message: " << *message << endl; // prints only the first character
+    message[0] = 'J';
+    cout << "message: " << message << endl;
+    cout << "*message: " << *message << endl; // prints only the first character
+    */
+    /*
+     // Heap and Stack
+     {
+         int test = 10;
+         cout << "test: " << test << endl; // this will throw an error because test is out of scope
+     }
+     // stack vars are being destroyed when they go out of scope
+     // cout << "test: " << test << endl; // this will throw an error because test is out of scope
+
+     {
+         int *p_number = new int{20}; // this will allocate memory on the heap
+         // or in two steps
+         // int *p_number{nullptr};
+         // p_number = new int;
+         *p_number = 10;
+         cout << "*p_number: " << *p_number << endl;
+         cout << "p_number: " << p_number << endl;
+         delete p_number; // this will deallocate the memory on the heap
+         // it is really bad to call delete a second time on the same pointer, because it will cause undefined behavior
+         p_number = nullptr; // this will set the pointer to nullptr, so that others know that it is not pointing to anything
+         cout << "p_number: " << p_number << endl;
+         // cout << "*p_number: " << *p_number << endl;
+
+         // reuse the pointer
+         p_number = new int{30};
+         cout << "*p_number: " << *p_number << endl;
+         cout << "p_number: " << p_number << endl;
+         delete p_number; // this will deallocate the memory on the heap
+         p_number = nullptr;
+     }
+    */
+
+    // Dangling Pointers
+    /*
+    1. A pointer that is uninitialized.
+    2. A pointer that points to a memory that has been deallocated (deleted pointer)
+    3. Multiple pointers pointing to the same memory // happens if you use nested pointers and then delete the first pointer
+    */
+    /*
+    // Case 1 - Uninitialized Pointers - dangling pointer
+     int *p_number;
+     cout << "*p_number: " << *p_number << endl;
+     cout << "p_number: " << p_number << endl;
+     // solution: set the pointer to nullptr and check if it is nullptr before using it
+    */
+
+    /*
+     // Case 2 - Deleted Pointers - dangling pointer
+     int *p_number = new int{10};
+     cout << "*p_number: " << *p_number << endl;
+     cout << "p_number: " << p_number << endl;
+     delete p_number;                          // this will deallocate the memory on the heap
+     cout << "p_number: " << p_number << endl; // <- this is a dangling pointer
+    // solution: set the pointer to nullptr
+     p_number = nullptr;
+     cout << "p_number: " << p_number << endl;
+
+    */
+    /*
+     // Case 3 - Multiple Pointers - dangling pointer
+     int *p_number = new int{10};
+     int *p_number1 = p_number;
+
+     cout << "*p_number: " << *p_number << endl;
+     cout << "p_number: " << p_number << endl;
+     cout << "*p_number1: " << *p_number1 << endl;
+     cout << "p_number1: " << p_number1 << endl;
+
+     delete p_number;                            // this will deallocate the memory on the heap
+     p_number = nullptr;                         // this will set the pointer to nullptr, so that others know that it is not pointing to anything
+     cout << "p_number: " << p_number << endl;   // this pointer is cleaned up, but "dangling"
+     cout << "p_number1: " << p_number1 << endl; // <- this is a dangling pointer
+    // solution: check if the master pointer is nullptr before using the slave pointers
+    */
+
+    /*
+    // memory leaks
+    int *p_number{new int{67}};
+
+    int number = 10;
+    cout << "number: " << number << endl;
+    cout << "*p_number: " << *p_number << endl;
+    cout << "p_number: " << p_number << endl;
+
+    p_number = &number; // this will cause a memory leak because the memory on the heap is not deallocated
+    // now we have no way to deallocate the memory on the heap where we stored 67
+
+    {
+        int *p_number_inner{new int{67}};
+    }
+    // this will cause a memory leak because the memory on the heap is not deallocated outside of the scope you don't have access to the pointer anymore
+    */
+
+    // dynamic arrays, are arrays which are allocated on the heap
+    /*
+    size_t size{10};
+
+    double *p_salaries = new double[size]{}; // init with garbage values
+    // important to understand, is that element based for loops will not work with pointers!
+    // the array has decayed to a pointer, so the size is not known anymore
+    int *p_students{new (std::nothrow) int[size]{}};
+    double *p_scores{new (std::nothrow) double[size]{1, 2, 3, 4, 5}};
+
+    if (p_scores)
+    {
+        cout << "size of scores (it's a regular pointer): " << sizeof(p_scores) << endl;
+        cout << "size of scores (it's a regular pointer): " << sizeof(*p_scores) << endl;
+        for (size_t i = 0; i < size; i++)
+        {
+            cout << "p_scores[" << i << "]: " << p_scores[i] << " Alternative access - *(p_scores + " << i << "): " << *(p_scores + i) << endl;
+        }
+    }
+
+    delete[] p_salaries;
+    p_salaries = nullptr;
+    delete[] p_students;
+    p_students = nullptr;
+    delete[] p_scores;
+    p_scores = nullptr;
+
+    // static arrays vs dynamic arrays
+    // static allocated on the stack
+    // dynamic allocated on the heap
+    // static works with std::size
+    // dynamic does not work with std::size
+    // static works with for (auto i : array)
+    // dynamic does not work with for (auto i : array)
+
+    int test[10]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    cout << "static works: " << std::size(test) << endl;
+    // error:
+    // cout << "dynamic " << std::size(p_scores) << endl;
+
+    for (auto i : test)
+    {
+        cout << "static works: " << i << endl;
+    }
+
+    // error:
+    // for (auto i : p_scores)
+    // {
+    //     cout << "dynamic works: " << i << endl;
+    // }
+    */
 
     return 0;
 }
