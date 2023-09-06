@@ -624,5 +624,75 @@ int main()
     // }
     */
 
+    // modify data through references (aliasing)
+    /*
+    int int_value{45};
+    double d_value{4.5};
+
+    int &ref_int_value{int_value};
+    double &ref_d_value{d_value};
+
+    cout << "int_value: " << int_value << endl;
+    cout << "ref_int_value: " << ref_int_value << endl;
+    cout << "&int_value: " << &int_value << endl;
+    cout << "&ref_int_value: " << &ref_int_value << endl;
+
+    ref_int_value = 50;
+
+    cout << "int_value: " << int_value << endl;
+    cout << "ref_int_value: " << ref_int_value << endl;
+    cout << "&int_value: " << &int_value << endl;
+    cout << "&ref_int_value: " << &ref_int_value << endl;
+
+    int_value = 60;
+
+    cout << "int_value: " << int_value << endl;
+    cout << "ref_int_value: " << ref_int_value << endl;
+    cout << "&int_value: " << &int_value << endl;
+    cout << "&ref_int_value: " << &ref_int_value << endl;
+    */
+    /*
+     // references vs. pointers
+
+     double d_value{4.5};
+     double *p_d_value{&d_value};  // pointer to d_value
+     double &ref_d_value{d_value}; // reference to d_value
+
+     cout << "d_value: " << d_value << endl;
+     cout << "p_d_value: " << p_d_value << endl;
+     cout << "*p_d_value: " << *p_d_value << endl;
+     cout << "&d_value: " << &d_value << endl;
+     cout << "&p_d_value: " << &p_d_value << endl;
+     cout << "ref_d_value: " << ref_d_value << endl;
+     cout << "&ref_d_value: " << &ref_d_value << endl;
+
+     // 1. Pointers need to be dereferenced
+     // 2. References cannot be null
+     // 3. A reference must be initialized
+     // 4. A reference cannot be changed to refer to another variable after initialization
+     // ? 5. References cannot be uninitialized
+
+     // 1. Pointers need to be dereferenced
+     *p_d_value = 10.5;
+     cout << "d_value: " << d_value << endl;
+     cout << "p_d_value: " << p_d_value << endl;
+     cout << "*p_d_value: " << *p_d_value << endl;
+     cout << "&d_value: " << &d_value << endl;
+     cout << "&p_d_value: " << &p_d_value << endl;
+     cout << "ref_d_value: " << ref_d_value << endl;
+     cout << "&ref_d_value: " << &ref_d_value << endl;
+
+    // vs
+
+    ref_d_value = 20.5;
+    cout << "d_value: " << d_value << endl;
+    cout << "p_d_value: " << p_d_value << endl;
+    cout << "*p_d_value: " << *p_d_value << endl;
+    cout << "&d_value: " << &d_value << endl;
+    cout << "&p_d_value: " << &p_d_value << endl;
+    cout << "ref_d_value: " << ref_d_value << endl;
+    cout << "&ref_d_value: " << &ref_d_value << endl;
+    */
+
     return 0;
 }
