@@ -793,6 +793,7 @@ using namespace std;
 //     return (x > y) ? x : y;
 // }
 
+/*
 // pass by value
 void say_age_value(int age)
 {
@@ -829,4 +830,33 @@ int main()
     cout << "(Before say_age_reference) You are " << age << " years old: The &address: " << &age << endl;
     say_age_reference(age);
     cout << "(After say_age_reference) You are " << age << " years old: The &address: " << &age << endl;
+}
+*/
+
+// get output from a function, through a reference
+
+void max_str(const string str1, const string str2, string &result)
+{
+    if (str1.length() > str2.length())
+    {
+        result = str1;
+    }
+    else
+    {
+        result = str2;
+    }
+}
+
+int main()
+{
+
+    string str1{"Hello World!"};
+    string str2{"Hello World! Test"};
+    string result{};
+
+    max_str(str1, str2, result);
+
+    cout << "result: " << result << endl;
+
+    return 0;
 }
