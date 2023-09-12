@@ -777,14 +777,14 @@ using namespace std;
 // function
 
 // prototype - a signature would not include the name the return type
-int max(int, int);
+// int max(int, int);
 
-int main()
-{
-    int result = max(10, 20);
-    cout << "result: " << result << endl;
-    return 0;
-}
+// int main()
+// {
+//     int result = max(10, 20);
+//     cout << "result: " << result << endl;
+//     return 0;
+// }
 
 // the crazy thing is now that you can define the function after the main function or literally anywhere else -> see some_other_file.cpp
 // no import needed
@@ -792,3 +792,41 @@ int main()
 // {
 //     return (x > y) ? x : y;
 // }
+
+// pass by value
+void say_age_value(int age)
+{
+    ++age;
+    cout << "You are " << age << " years old. The &address: " << &age << endl;
+}
+// pass by pointer
+void say_age_pointer(int *age)
+{
+    ++(*age);
+    cout << "You are " << *age << " years old. The &address: " << &age << endl;
+}
+
+// pass by reference
+void say_age_reference(int &age)
+{
+    ++age;
+    cout << "You are " << age << " years old. The &address: " << &age << endl;
+}
+
+int main()
+{
+    int age{20};
+    cout << "(Before say_age_value) You are " << age << " years old: The &address: " << &age << endl;
+    say_age_value(age);
+    cout << "(After say_age_value) You are " << age << " years old: The &address: " << &age << endl;
+    cout << " ----------------- " << endl;
+
+    cout << "(Before say_age_pointer) You are " << age << " years old: The &address: " << &age << endl;
+    say_age_pointer(&age);
+    cout << "(After say_age_pointer) You are " << age << " years old: The &address: " << &age << endl;
+
+    cout << " ----------------- " << endl;
+    cout << "(Before say_age_reference) You are " << age << " years old: The &address: " << &age << endl;
+    say_age_reference(age);
+    cout << "(After say_age_reference) You are " << age << " years old: The &address: " << &age << endl;
+}
