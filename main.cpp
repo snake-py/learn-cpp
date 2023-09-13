@@ -835,28 +835,56 @@ int main()
 
 // get output from a function, through a reference
 
-void max_str(const string str1, const string str2, string &result)
-{
-    if (str1.length() > str2.length())
-    {
-        result = str1;
-    }
-    else
-    {
-        result = str2;
-    }
-}
+// void max_str(const string str1, const string str2, string &result)
+// {
+//     if (str1.length() > str2.length())
+//     {
+//         result = str1;
+//     }
+//     else
+//     {
+//         result = str2;
+//     }
+// }
+
+// int main()
+// {
+
+//     string str1{"Hello World!"};
+//     string str2{"Hello World! Test"};
+//     string result{};
+
+//     max_str(str1, str2, result);
+
+//     cout << "result: " << result << endl;
+
+//     return 0;
+// }
 
 int main()
 {
 
-    string str1{"Hello World!"};
-    string str2{"Hello World! Test"};
-    string result{};
+    // lambda functions, which calls itself directly
+    int a = []()
+    {
+        return 10;
+    }();
+    cout << "a: " << a << endl;
 
-    max_str(str1, str2, result);
+    // [capture list](parameter list) -> return type {function body}
+    // capture list: [] - capture nothing <- define the variables which are used in the function body
+    // capture list: [a, &b] - capture a by value and b by reference
+    // (parameter list) - the parameters of the function
+    // -> return type - the return type of the function
+    // {function body} - the body of the function
+    // () at the end calls the function
 
-    cout << "result: " << result << endl;
+    auto func = [](int a, int b) -> int
+    {
+        return a + b;
+    };
 
+    int b = func(10, 20);
+    cout << "b: " << b << endl;
     return 0;
 }
