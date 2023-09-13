@@ -861,30 +861,44 @@ int main()
 //     return 0;
 // }
 
-int main()
-{
+// int main()
+// {
 
-    // lambda functions, which calls itself directly
-    int a = []()
-    {
-        return 10;
-    }();
-    cout << "a: " << a << endl;
+//     // lambda functions, which calls itself directly
+//     int a = []()
+//     {
+//         return 10;
+//     }();
+//     cout << "a: " << a << endl;
 
-    // [capture list](parameter list) -> return type {function body}
-    // capture list: [] - capture nothing <- define the variables which are used in the function body
-    // capture list: [a, &b] - capture a by value and b by reference
-    // (parameter list) - the parameters of the function
-    // -> return type - the return type of the function
-    // {function body} - the body of the function
-    // () at the end calls the function
+//     // [capture list](parameter list) -> return type {function body}
+//     // capture list: [] - capture nothing <- define the variables which are used in the function body
+//     // capture list: [a, &b] - capture a by value and b by reference
+//     // (parameter list) - the parameters of the function
+//     // -> return type - the return type of the function
+//     // {function body} - the body of the function
+//     // () at the end calls the function
 
-    auto func = [](int a, int b) -> int
-    {
-        return a + b;
-    };
+//     auto func = [](int a, int b) -> int
+//     {
+//         return a + b;
+//     };
 
-    int b = func(10, 20);
-    cout << "b: " << b << endl;
-    return 0;
-}
+//     int b = func(10, 20);
+//     cout << "b: " << b << endl;
+//     return 0;
+
+//     // capture everything through context
+//     int c = 10;
+//     int d = 20;
+
+//     auto funcCapturedByValue = [=]()
+//     {
+//         return c + d;
+//     };
+
+//     auto funcCapturedByReference = [&]()
+//     {
+//         return c + d;
+//     };
+// }
